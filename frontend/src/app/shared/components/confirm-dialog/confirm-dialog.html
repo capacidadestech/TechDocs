@@ -1,0 +1,16 @@
+<app-modal [heading]="heading()" (close)="cancel.emit()">
+  <p class="message">{{ message() }}</p>
+
+  <footer class="modal-actions">
+    <button class="btn" type="button" (click)="cancel.emit()">Cancelar</button>
+    <button
+      class="btn"
+      type="button"
+      [class.btn--danger]="destructive()"
+      [class.btn--primary]="!destructive()"
+      (click)="confirm.emit()"
+    >
+      {{ confirmLabel() }}
+    </button>
+  </footer>
+</app-modal>

@@ -1,0 +1,268 @@
+// =============================================================================
+//  TechDocs · _ui.scss — Primitivos de UI reutilizables
+//  ---------------------------------------------------------------------------
+//  Clases globales para los patrones compartidos del sistema de diseño.
+//  Los componentes usan estas clases y solo añaden su LAYOUT específico.
+//  Todo con tokens (var(--color-*)); cero colores literales.
+//
+//  Índice:
+//    1. Tipografía   .eyebrow · .display · .muted
+//    2. Controles    .btn · .btn--icon · .btn--primary · .pill · .input · .field
+//    3. Superficies  .card · .dashed-box · .frosted · .divider
+//    4. Popover      .overlay · .menu · .menu__item
+// =============================================================================
+
+// ----- 1. Tipografía ---------------------------------------------------------
+
+// Etiqueta pequeña en mayúsculas con tracking (va sobre los títulos).
+.eyebrow {
+  margin: 0;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-muted-foreground);
+}
+
+// Título con la fuente display del tema.
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-foreground);
+}
+
+// Texto secundario atenuado.
+.muted {
+  color: var(--color-muted-foreground);
+}
+
+// ----- 2. Controles ----------------------------------------------------------
+
+// Botón base: superficie con borde, redondeado.
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn:hover {
+  background: var(--color-surface-elevated);
+}
+
+// Botón cuadrado solo-icono (2.25rem).
+.btn--icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+}
+
+// Botón de acción principal (color de marca).
+.btn--primary {
+  border-color: transparent;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  font-weight: 500;
+}
+.btn--primary:hover {
+  background: var(--color-foreground);
+}
+
+// Botón de acción destructiva (eliminar).
+.btn--danger {
+  border-color: transparent;
+  background: var(--color-destructive);
+  color: #fff;
+  font-weight: 500;
+}
+.btn--danger:hover {
+  filter: brightness(1.08);
+  background: var(--color-destructive);
+}
+
+// Campo de entrada de texto.
+.input {
+  width: 100%;
+  padding: 0.5rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: 0.875rem;
+}
+.input::placeholder {
+  color: var(--color-muted-foreground);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+// Select nativo: oculta la flecha del sistema y dibuja una propia (chevron)
+// con espacio a la derecha, para un look consistente entre navegadores y temas.
+select.input {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.25rem;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  cursor: pointer;
+}
+
+// Grupo etiqueta + control en columna.
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.field__label {
+  font-size: 0.8125rem;
+  color: var(--color-muted-foreground);
+}
+
+// Entrada de tags como chips + input inline.
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.25rem 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-size: 0.75rem;
+}
+.chip button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.chip button:hover {
+  opacity: 1;
+}
+.chips__input {
+  flex: 1;
+  min-width: 8rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: 0.875rem;
+  outline: none;
+}
+.chips__input::placeholder {
+  color: var(--color-muted-foreground);
+}
+
+// Fila de acciones al pie de un modal (botones a la derecha).
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+// Forma de píldora (redondeo completo). Se combina con .btn o .input
+// (va al final para que su redondeo gane sobre ambos).
+.pill {
+  border-radius: 9999px;
+}
+
+// ----- 3. Superficies --------------------------------------------------------
+
+// Tarjeta / panel con borde.
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) + 4px);
+}
+
+// Recuadro de estado vacío (borde punteado).
+.dashed-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 5rem 1.5rem;
+  text-align: center;
+  border: 1px dashed var(--color-border);
+  border-radius: calc(var(--radius) + 4px);
+  background: color-mix(in oklab, var(--color-surface) 30%, transparent);
+}
+
+// Superficie translúcida con desenfoque (sidebar, topbar).
+.frosted {
+  background: color-mix(in oklab, var(--color-surface) 60%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+// Divisor vertical sutil (pipe).
+.divider {
+  width: 1px;
+  height: 1.5rem;
+  background: var(--color-border);
+}
+
+// ----- 4. Popover ------------------------------------------------------------
+
+// Capa transparente a pantalla completa para cerrar popovers al clic afuera.
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+// Contenedor de menú flotante (el componente añade top/right).
+.menu {
+  position: absolute;
+  z-index: 11;
+  min-width: 11rem;
+  padding: 0.375rem;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+}
+
+// Ítem de menú.
+.menu__item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.5rem 0.625rem;
+  border-radius: calc(var(--radius) - 2px);
+  color: var(--color-foreground);
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu__item:hover {
+  background: var(--color-surface);
+}

@@ -1,0 +1,69 @@
+// =============================================================================
+//  TechDocs · _base.scss — Fundamentos del sistema de diseño
+//  ---------------------------------------------------------------------------
+//  Capa base global: tokens de diseño (variables CSS), reset mínimo y estilos
+//  del documento. NO incluye componentes (esos viven en _ui.scss).
+//
+//  Los tokens definen el TEMA POR DEFECTO (Kernel). El ThemeService los
+//  sobrescribe en :root para cambiar de tema en caliente.
+// =============================================================================
+
+// ----- Tokens de diseño (tema por defecto · "Kernel", petróleo oscuro) -------
+:root {
+  --radius: 0.5rem;
+
+  // Tipografía
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-sans:
+    'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  // Colores del tema
+  --color-background: #002532; // fondo (teal muy oscuro)
+  --color-foreground: #e3e2da; // texto principal (blanco cálido)
+  --color-surface: #0a3b4a; // paneles y cards
+  --color-surface-elevated: #14505e; // hover de superficies
+  --color-primary: #b5b5aa; // marca / acentos (sage)
+  --color-primary-foreground: #002532;
+  --color-muted: #2a4f5e;
+  --color-muted-foreground: #a5a59a; // texto secundario
+  --color-accent: #1f4f5e; // estado activo / seleccionado
+  --color-accent-foreground: #e3e2da;
+  --color-border: #2a5a6a; // bordes sutiles
+  --color-destructive: #c45c5c; // acciones destructivas
+}
+
+// ----- Reset mínimo ----------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+// ----- Documento -------------------------------------------------------------
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  // Gradiente ambiente sutil (dos glows radiales), fijo al hacer scroll.
+  // Usa tokens del tema para adaptarse a cada paleta.
+  background-image:
+    radial-gradient(
+      at 12% 8%,
+      color-mix(in oklab, var(--color-foreground) 8%, transparent) 0,
+      transparent 50%
+    ),
+    radial-gradient(
+      at 88% 92%,
+      color-mix(in oklab, var(--color-primary) 10%, transparent) 0,
+      transparent 50%
+    );
+  background-attachment: fixed;
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

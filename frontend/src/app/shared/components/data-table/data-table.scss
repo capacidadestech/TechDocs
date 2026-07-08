@@ -1,0 +1,50 @@
+// Tabla genérica: superficie tipo .card con scroll horizontal en pantallas chicas.
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) + 4px);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+// Encabezado: etiqueta sutil en mayúsculas.
+.table__th {
+  padding: 0.875rem 1rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted-foreground);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table__td {
+  padding: 0.875rem 1rem;
+  color: var(--color-foreground);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+// La última fila no necesita borde inferior (lo da el contenedor).
+.table__row:last-child .table__td {
+  border-bottom: none;
+}
+
+.table__row {
+  transition: background 0.15s ease;
+}
+.table__row:hover {
+  background: color-mix(in oklab, var(--color-surface-elevated) 60%, transparent);
+}
+
+.table__empty {
+  padding: 3rem 1rem;
+  text-align: center;
+}

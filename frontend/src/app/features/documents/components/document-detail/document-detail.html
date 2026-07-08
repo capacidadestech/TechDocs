@@ -1,0 +1,54 @@
+<app-modal [heading]="doc().name" (close)="close.emit()">
+  <dl class="detail">
+    <div class="detail__row">
+      <dt>Estado</dt>
+      <dd class="detail__status">
+        <app-status-badge [status]="doc().status" /> {{ statusLabel() }}
+      </dd>
+    </div>
+    <div class="detail__row">
+      <dt>Directorio</dt>
+      <dd>{{ folderPath() }}</dd>
+    </div>
+    <div class="detail__row">
+      <dt>Tipo</dt>
+      <dd>{{ typeLabel() }}</dd>
+    </div>
+    <div class="detail__row">
+      <dt>Tamaño</dt>
+      <dd>{{ formatSize(doc().size) }}</dd>
+    </div>
+    <div class="detail__row">
+      <dt>Autor</dt>
+      <dd>{{ doc().author }}</dd>
+    </div>
+    <div class="detail__row">
+      <dt>Cargado</dt>
+      <dd>{{ formatDate(doc().uploadedAt) }}</dd>
+    </div>
+    <div class="detail__row">
+      <dt>Modificado</dt>
+      <dd>{{ formatDate(doc().updatedAt) }}</dd>
+    </div>
+    @if (doc().tags.length) {
+      <div class="detail__row">
+        <dt>Tags</dt>
+        <dd class="detail__tags">
+          @for (tag of doc().tags; track tag) {
+            <span class="tag">{{ tag }}</span>
+          }
+        </dd>
+      </div>
+    }
+    @if (doc().description) {
+      <div class="detail__row">
+        <dt>Descripción</dt>
+        <dd>{{ doc().description }}</dd>
+      </div>
+    }
+  </dl>
+
+  <footer class="modal-actions">
+    <button class="btn" type="button" (click)="close.emit()">Cerrar</button>
+  </footer>
+</app-modal>

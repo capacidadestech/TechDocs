@@ -1,0 +1,80 @@
+// El dropdown usa .overlay/.menu/.menu__item globales.
+// Aquí queda el botón (avatar solo-icono o fila de cuenta) y la posición del menú.
+
+:host {
+  display: block;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-foreground);
+  font: inherit;
+  cursor: pointer;
+}
+
+// Avatar circular (el icono del usuario).
+.user-trigger__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  transition: filter 0.15s ease;
+}
+
+// Modo solo-icono (topbar móvil): el hover resalta el avatar.
+.user-trigger:not(.user-trigger--full):hover .user-trigger__avatar {
+  filter: brightness(1.08);
+}
+
+// Modo fila de cuenta (footer del sidebar): avatar + nombre + chevron.
+.user-trigger--full {
+  width: 100%;
+  gap: 0.625rem;
+  justify-content: flex-start;
+  padding: 0.4rem 0.5rem;
+  border-radius: var(--radius);
+  transition: background 0.15s ease;
+}
+.user-trigger--full:hover {
+  background: var(--color-surface-elevated);
+}
+.user-trigger__name {
+  flex: 1;
+  overflow: hidden;
+  text-align: left;
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.user-trigger__chev {
+  flex-shrink: 0;
+  color: var(--color-muted-foreground);
+}
+
+// Posición del dropdown (el resto del estilo viene de .menu global).
+.menu {
+  top: calc(100% + 0.5rem);
+  right: 0;
+}
+
+// Variante hacia arriba a lo ancho (footer del sidebar).
+.menu--up {
+  top: auto;
+  right: 0;
+  left: 0;
+  bottom: calc(100% + 0.5rem);
+}

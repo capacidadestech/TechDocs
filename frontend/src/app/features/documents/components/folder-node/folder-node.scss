@@ -1,0 +1,103 @@
+:host {
+  display: block;
+}
+
+.node__row {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.node__row:hover {
+  background: var(--color-surface-elevated);
+}
+
+.node__row.is-active {
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+.node__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--color-muted-foreground);
+  transition: transform 0.15s ease;
+}
+
+.node__chevron.is-open {
+  transform: rotate(90deg);
+}
+
+.node__chevron--placeholder {
+  cursor: default;
+}
+
+.node__icon {
+  flex-shrink: 0;
+  color: var(--color-muted-foreground);
+}
+
+.node__name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.count {
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Acciones por nodo: visibles al hover o foco de la fila */
+.node__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.node__row:hover .node__actions,
+.node__row:focus-within .node__actions {
+  opacity: 1;
+}
+
+.node__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: calc(var(--radius) - 0.25rem);
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+}
+
+.node__action:hover {
+  background: var(--color-surface);
+  color: var(--color-foreground);
+}
+
+.node__new {
+  display: block;
+  width: calc(100% - 0.5rem);
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+}

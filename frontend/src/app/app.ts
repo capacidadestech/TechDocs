@@ -1,0 +1,16 @@
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { ThemeService } from './core/theme/theme.service';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
+})
+export class App {
+  constructor() {
+    // Instancia el ThemeService al arrancar para aplicar el tema guardado en toda la app.
+    inject(ThemeService);
+  }
+}

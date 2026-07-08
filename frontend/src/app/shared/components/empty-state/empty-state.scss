@@ -1,0 +1,13 @@
+// Solo lo específico del empty-state; el recuadro (.dashed-box),
+// la tipografía (.display) y el texto atenuado (.muted) son globales.
+
+.empty__title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.empty__message {
+  margin: 0;
+  max-width: 24rem;
+  font-size: 0.875rem;
+}

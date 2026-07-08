@@ -1,0 +1,80 @@
+// Barra limpia bajo la tabla: todo agrupado a la derecha (sin caja).
+.paginator {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  padding: 0 0.25rem;
+  font-size: 0.8125rem;
+}
+
+.paginator__size {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.paginator__select {
+  width: auto;
+  padding: 0.3rem 2rem 0.3rem 0.65rem;
+  cursor: pointer;
+}
+
+.paginator__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.paginator__info {
+  white-space: nowrap;
+}
+
+// Grupo de páginas numeradas.
+.pager {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pager__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.pager__btn:hover:not(:disabled):not(.is-active) {
+  background: var(--color-surface-elevated);
+}
+.pager__btn--nav {
+  color: var(--color-muted-foreground);
+}
+.pager__btn.is-active {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  font-weight: 600;
+}
+.pager__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pager__gap {
+  min-width: 1.25rem;
+  text-align: center;
+  color: var(--color-muted-foreground);
+}

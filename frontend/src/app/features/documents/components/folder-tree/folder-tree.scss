@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+}
+
+// Fila raíz: "Inicio" + acción de expandir/colapsar todo.
+.tree__root-row {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.tree__root {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4rem 0.5rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.tree__root:hover {
+  background: var(--color-surface-elevated);
+}
+.tree__root.is-active {
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+.tree__icon {
+  flex-shrink: 0;
+  color: var(--color-muted-foreground);
+}
+
+// Botón "expandir/colapsar todo".
+.tree__toggle-all {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.tree__toggle-all:hover {
+  background: var(--color-surface-elevated);
+  color: var(--color-foreground);
+}
+
+.tree__root-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.tree__new {
+  margin: 0.25rem 0;
+  font-size: 0.8125rem;
+}
+
+.tree__add {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.5rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-muted-foreground);
+  font: inherit;
+  font-size: 0.8125rem;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.tree__add:hover {
+  background: var(--color-surface-elevated);
+  color: var(--color-foreground);
+}

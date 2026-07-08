@@ -1,0 +1,124 @@
+// Usa primitivos globales: .eyebrow, .display, .muted, .input/.pill, .divider.
+// Aquí queda solo el layout del header y los ajustes específicos.
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0 0 1.5rem; /* el padding lateral/superior lo da el contenedor centrado */
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* acciones del header (buscador) alineadas a la derecha */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+/* buscador tipo pill: icono · input transparente · botón de filtros */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 22rem;
+  max-width: 100%;
+  padding: 0 0.375rem 0 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  background: var(--color-surface);
+  transition: border-color 0.15s ease;
+}
+.search:focus-within {
+  border-color: var(--color-primary);
+}
+.search__icon {
+  display: flex;
+  flex-shrink: 0;
+  color: var(--color-muted-foreground);
+  pointer-events: none;
+}
+.search__field {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-foreground);
+  font: inherit;
+  font-size: 0.875rem;
+  outline: none;
+}
+.search__field::placeholder {
+  color: var(--color-muted-foreground);
+}
+.search__filters {
+  flex-shrink: 0;
+}
+
+/* .display da familia/peso/tracking/color; aquí solo tamaño y márgenes */
+.title {
+  margin: 0.25rem 0 0;
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+
+/* breadcrumb */
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 1.25rem; /* espacio reservado: sin saltos al cambiar de nivel */
+  font-size: 0.8125rem;
+}
+
+.crumbs__item {
+  color: var(--color-muted-foreground);
+  text-decoration: none;
+}
+
+.crumbs__sep {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* crumb navegable (anchor de ruta o botón de carpeta) */
+.crumbs__link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+a.crumbs__item:hover,
+.crumbs__link:hover {
+  color: var(--color-foreground);
+  text-decoration: underline;
+}
+
+.crumbs__item--current {
+  color: var(--color-foreground);
+  font-weight: 500;
+}
+
+.crumbs__sep {
+  color: var(--color-muted-foreground);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1023px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.75rem;
+  }
+}

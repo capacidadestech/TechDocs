@@ -1,0 +1,123 @@
+<app-modal heading="Subir documento" (close)="cancel()">
+  <!-- Dropzone / selector de archivo -->
+  @if (!file()) {
+    <label
+      class="dropzone"
+      [class.is-over]="dragOver()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave()"
+      (drop)="onDrop($event)"
+    >
+      <input type="file" class="dropzone__input" (change)="pick($any($event.target).files)" />
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <path d="M17 8l-5-5-5 5" />
+        <path d="M12 3v12" />
+      </svg>
+      <span class="dropzone__title">Arrastra un archivo aquí</span>
+      <span class="dropzone__hint muted">o haz clic para elegirlo</span>
+    </label>
+  } @else {
+    <!-- Archivo seleccionado: metadata derivada -->
+    <div class="file card">
+      <svg
+        class="file__icon"
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+        <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+      </svg>
+      <span class="file__meta">
+        <span class="file__name">{{ fileName() }}</span>
+        <span class="file__sub muted">{{ fileTypeLabel() }} · {{ fileSize() }}</span>
+      </span>
+      <button class="btn btn--icon" type="button" (click)="clearFile()" aria-label="Quitar archivo">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  }
+
+  <label class="field">
+    <span class="field__label">Directorio destino</span>
+    <select
+      class="input"
+      [ngModel]="folderId()"
+      (ngModelChange)="folderId.set($event)"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      <option value="" disabled>Selecciona un directorio</option>
+      @for (o of folderOptions(); track o.id) {
+        <option [value]="o.id">{{ o.label }}</option>
+      }
+    </select>
+  </label>
+
+  <div class="field">
+    <span class="field__label">Tags <span class="muted">(opcional)</span></span>
+    <div class="chips">
+      @for (tag of tags(); track tag) {
+        <span class="chip">
+          {{ tag }}
+          <button type="button" (click)="removeTag(tag)" aria-label="Quitar tag">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </span>
+      }
+      <input
+        class="chips__input"
+        type="text"
+        placeholder="Añadir tag y Enter…"
+        [(ngModel)]="tagInput"
+        [ngModelOptions]="{ standalone: true }"
+        (keydown.enter)="$event.preventDefault(); addTag()"
+      />
+    </div>
+  </div>
+
+  <footer class="modal-actions">
+    <button class="btn" type="button" (click)="cancel()">Cancelar</button>
+    <button class="btn btn--primary" type="button" (click)="submit()" [disabled]="!canSubmit()">
+      Subir
+    </button>
+  </footer>
+</app-modal>

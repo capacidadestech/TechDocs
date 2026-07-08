@@ -1,0 +1,69 @@
+<div class="filter-menu">
+  <button
+    class="filter-trigger"
+    [class.is-active]="filters.hasActiveFilters()"
+    type="button"
+    aria-haspopup="dialog"
+    aria-label="Filtros"
+    title="Filtros"
+    [attr.aria-expanded]="open()"
+    (click)="toggle()"
+  >
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="7" x2="17" y1="12" y2="12" />
+      <line x1="10" x2="14" y1="18" y2="18" />
+    </svg>
+    @if (filters.hasActiveFilters()) {
+      <span class="filter-trigger__dot" aria-hidden="true"></span>
+    }
+  </button>
+
+  @if (open()) {
+    <div class="overlay" (click)="close()"></div>
+    <div class="menu popover" role="dialog" aria-label="Filtros de documentos">
+      <div class="popover__head">
+        <span class="eyebrow">Filtros</span>
+        @if (filters.hasActiveFilters()) {
+          <button class="popover__clear" type="button" (click)="filters.clearFilters()">
+            Limpiar
+          </button>
+        }
+      </div>
+
+      <label class="field">
+        <span class="field__label">Estado</span>
+        <select
+          class="input"
+          [value]="filters.status()"
+          (change)="onStatus($any($event.target).value)"
+        >
+          <option value="all">Todos</option>
+          @for (opt of statusOptions; track opt[0]) {
+            <option [value]="opt[0]">{{ opt[1] }}</option>
+          }
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Tipo de documento</span>
+        <select class="input" [value]="filters.type()" (change)="onType($any($event.target).value)">
+          <option value="all">Todos</option>
+          @for (opt of typeOptions; track opt[0]) {
+            <option [value]="opt[0]">{{ opt[1] }}</option>
+          }
+        </select>
+      </label>
+    </div>
+  }
+</div>

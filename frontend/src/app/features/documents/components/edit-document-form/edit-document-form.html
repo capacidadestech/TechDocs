@@ -1,0 +1,77 @@
+<app-modal heading="Editar documento" (close)="close.emit()">
+  <label class="field">
+    <span class="field__label">Nombre</span>
+    <input
+      class="input"
+      type="text"
+      [ngModel]="name()"
+      (ngModelChange)="name.set($event)"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  </label>
+
+  <label class="field">
+    <span class="field__label">Directorio</span>
+    <select
+      class="input"
+      [ngModel]="folderId()"
+      (ngModelChange)="folderId.set($event)"
+      [ngModelOptions]="{ standalone: true }"
+    >
+      @for (o of folderOptions(); track o.id) {
+        <option [value]="o.id">{{ o.label }}</option>
+      }
+    </select>
+  </label>
+
+  <div class="field">
+    <span class="field__label">Tags <span class="muted">(opcional)</span></span>
+    <div class="chips">
+      @for (tag of tags(); track tag) {
+        <span class="chip">
+          {{ tag }}
+          <button type="button" (click)="removeTag(tag)" aria-label="Quitar tag">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </span>
+      }
+      <input
+        class="chips__input"
+        type="text"
+        placeholder="Añadir tag y Enter…"
+        [(ngModel)]="tagInput"
+        [ngModelOptions]="{ standalone: true }"
+        (keydown.enter)="$event.preventDefault(); addTag()"
+      />
+    </div>
+  </div>
+
+  <label class="field">
+    <span class="field__label">Descripción <span class="muted">(opcional)</span></span>
+    <textarea
+      class="input edit__textarea"
+      rows="3"
+      [ngModel]="description()"
+      (ngModelChange)="description.set($event)"
+      [ngModelOptions]="{ standalone: true }"
+    ></textarea>
+  </label>
+
+  <footer class="modal-actions">
+    <button class="btn" type="button" (click)="close.emit()">Cancelar</button>
+    <button class="btn btn--primary" type="button" (click)="save()" [disabled]="!canSave()">
+      Guardar
+    </button>
+  </footer>
+</app-modal>

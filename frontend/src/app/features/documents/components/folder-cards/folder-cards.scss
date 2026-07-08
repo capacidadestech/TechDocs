@@ -1,0 +1,108 @@
+:host {
+  display: block;
+}
+
+.folder-cards {
+  margin-bottom: 1.5rem;
+}
+
+/* Carrusel: flecha · pista con scroll oculto · flecha */
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.carousel__track {
+  display: flex;
+  flex: 1;
+  min-width: 0; /* permite que el contenedor flex desborde y haga scroll (clave) */
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  /* la navegación es por flechas: ocultamos la barra de scroll */
+  scrollbar-width: none;
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__arrow {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-foreground);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.carousel__arrow:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-primary);
+}
+
+/* .card aporta superficie/borde/radio; aquí solo el layout de la tarjeta */
+.folder-card {
+  display: flex;
+  flex: 0 0 auto;
+  width: 14rem;
+  scroll-snap-align: start;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1rem;
+  font: inherit;
+  text-align: left;
+  color: var(--color-foreground);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.folder-card:hover {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-primary);
+}
+
+.folder-card__icon {
+  flex-shrink: 0;
+  color: var(--color-muted-foreground);
+}
+
+.folder-card__name {
+  flex: 1;
+  overflow: hidden;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Contador estilo notificación */
+.folder-card__badge {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.375rem;
+  height: 1.375rem;
+  padding: 0 0.375rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}

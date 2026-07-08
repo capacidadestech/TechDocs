@@ -1,0 +1,119 @@
+// Encabezado de la sección "Documentos" (el .eyebrow da el estilo de etiqueta).
+.section-title {
+  margin: 0 0 0.75rem;
+}
+
+// Botón flotante (FAB): subir documento, con anillo pulsante.
+.fab {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+// Anillo que late hacia afuera (llama la atención sin saturar).
+.fab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--color-primary);
+  animation: fab-pulse 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.fab:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+.fab:active {
+  transform: translateY(0);
+}
+
+@keyframes fab-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+// Respeta a quien prefiere menos movimiento.
+@media (prefers-reduced-motion: reduce) {
+  .fab::before {
+    animation: none;
+  }
+}
+
+// Celda Nombre del documento.
+.doc-name__title {
+  font-weight: 500;
+}
+
+// Celda Directorio: nombre del directorio.
+.doc-folder {
+  font-size: 0.8125rem;
+}
+
+// Celda Tags: chips compactos.
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.tag-chip {
+  display: inline-block;
+  padding: 0.0625rem 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-muted);
+  color: var(--color-foreground);
+  font-size: 0.6875rem;
+}
+
+// Celda Tipo: etiqueta con borde.
+.type-tag {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
+}
+
+// Acciones por fila: iconos compactos y atenuados.
+.row-actions {
+  display: inline-flex;
+  justify-content: flex-end;
+  gap: 0.375rem;
+}
+.row-actions .btn {
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-muted-foreground);
+}
+.row-actions .btn:hover {
+  color: var(--color-foreground);
+}

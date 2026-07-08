@@ -1,0 +1,104 @@
+<nav class="tree" aria-label="Navegación de carpetas">
+  <!-- Nodo raíz: Inicio (alineado con el breadcrumb) + expandir/colapsar todo -->
+  <div class="tree__root-row">
+    <button
+      class="tree__root"
+      type="button"
+      [class.is-active]="isRootActive()"
+      (click)="selectRoot()"
+    >
+      <svg
+        class="tree__icon"
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <path d="M9 22V12h6v10" />
+      </svg>
+      <span class="tree__root-name">Inicio</span>
+    </button>
+
+    @if (hasExpandable()) {
+      <button
+        class="tree__toggle-all"
+        type="button"
+        [title]="allExpanded() ? 'Colapsar todo' : 'Expandir todo'"
+        [attr.aria-label]="allExpanded() ? 'Colapsar todo' : 'Expandir todo'"
+        (click)="toggleAll()"
+      >
+        @if (allExpanded()) {
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m7 20 5-5 5 5" />
+            <path d="m7 4 5 5 5-5" />
+          </svg>
+        } @else {
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m7 15 5 5 5-5" />
+            <path d="m7 9 5-5 5 5" />
+          </svg>
+        }
+      </button>
+    }
+  </div>
+
+  @for (folder of roots(); track folder.id) {
+    <app-folder-node [folder]="folder" [depth]="1" />
+  }
+
+  @if (adding()) {
+    <input
+      class="input tree__new"
+      [style.margin-left.rem]="1.25"
+      type="text"
+      placeholder="Nombre de la carpeta"
+      [(ngModel)]="newName"
+      (keydown.enter)="confirmAdd()"
+      (keydown.escape)="cancelAdd()"
+      (blur)="confirmAdd()"
+    />
+  }
+
+  <button class="tree__add" type="button" (click)="startAdd()">
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14M12 5v14" />
+    </svg>
+    <span>Nueva carpeta</span>
+  </button>
+</nav>

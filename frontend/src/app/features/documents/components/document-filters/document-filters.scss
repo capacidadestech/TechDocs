@@ -1,0 +1,81 @@
+// El popover reutiliza .menu/.overlay y .field/.input/.eyebrow globales.
+// Aquí: el botón-disparador dentro del buscador y el layout del popover.
+
+:host {
+  display: inline-flex;
+}
+
+.filter-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.filter-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.filter-trigger:hover,
+.filter-trigger.is-active {
+  background: var(--color-surface-elevated);
+  color: var(--color-foreground);
+}
+
+// Punto indicador de filtros activos.
+.filter-trigger__dot {
+  position: absolute;
+  top: 0.125rem;
+  right: 0.125rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: 2px solid var(--color-surface);
+}
+
+// Popover de filtros (posición; el aspecto base viene de .menu global).
+.popover {
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: 16rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.popover__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popover__clear {
+  border: 0;
+  background: transparent;
+  color: var(--color-muted-foreground);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.popover__clear:hover {
+  color: var(--color-foreground);
+  text-decoration: underline;
+}
+
+.popover .input {
+  width: 100%;
+  cursor: pointer;
+}

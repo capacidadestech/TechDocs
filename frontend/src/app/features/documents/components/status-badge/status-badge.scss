@@ -1,0 +1,60 @@
+// Indicador de estatus: solo un punto de color (el estado se ve en el tooltip).
+// El color por estatus se inyecta vía `--badge`.
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.status__dot {
+  position: relative;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--badge);
+}
+
+// Anillo palpitante alrededor del punto.
+.status__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--badge);
+  animation: status-pulse 2s ease-out infinite;
+}
+
+@keyframes status-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status__dot::after {
+    animation: none;
+  }
+}
+
+.status--published {
+  --badge: #10b981;
+}
+.status--review {
+  --badge: #f59e0b;
+}
+.status--draft {
+  --badge: #3b82f6;
+}
+.status--archived {
+  --badge: #94a3b8;
+}

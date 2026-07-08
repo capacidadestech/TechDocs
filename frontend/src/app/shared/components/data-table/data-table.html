@@ -1,0 +1,43 @@
+<div class="table-wrap">
+  <table class="table">
+    <thead>
+      <tr>
+        @for (col of columns(); track col.key) {
+          <th
+            class="table__th"
+            [style.text-align]="col.align ?? 'start'"
+            [style.width]="col.width || null"
+          >
+            {{ col.header }}
+          </th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows(); track rowKey(row)) {
+        <tr class="table__row">
+          @for (col of columns(); track col.key) {
+            <td class="table__td" [style.text-align]="col.align ?? 'start'">
+              @if (templateFor(col.key); as tpl) {
+                <ng-container
+                  [ngTemplateOutlet]="tpl"
+                  [ngTemplateOutletContext]="{ $implicit: row }"
+                />
+              } @else if (col.type === 'date') {
+                {{ dateValue(row, col.key) | date: 'd MMM y' }}
+              } @else {
+                {{ value(row, col.key) }}
+              }
+            </td>
+          }
+        </tr>
+      } @empty {
+        <tr>
+          <td class="table__empty muted" [attr.colspan]="columns().length">
+            {{ emptyMessage() }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

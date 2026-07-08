@@ -1,0 +1,85 @@
+@if (subfolders().length) {
+  <section class="folder-cards">
+    <h2 class="eyebrow">Directorios</h2>
+
+    <div class="carousel">
+      @if (canPrev()) {
+        <button
+          class="carousel__arrow carousel__arrow--prev"
+          type="button"
+          (click)="scroll(-1)"
+          aria-label="Directorios anteriores"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </button>
+      }
+
+      <div class="carousel__track" #track (scroll)="updateArrows()">
+        @for (folder of subfolders(); track folder.id) {
+          <button class="folder-card card" type="button" (click)="open(folder.id)">
+            <svg
+              class="folder-card__icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+              />
+            </svg>
+            <span class="folder-card__name">{{ folder.name }}</span>
+            @if (docCount(folder.id) > 0) {
+              <span
+                class="folder-card__badge"
+                [attr.aria-label]="docCount(folder.id) + ' documentos'"
+              >
+                {{ docCount(folder.id) }}
+              </span>
+            }
+          </button>
+        }
+      </div>
+
+      @if (canNext()) {
+        <button
+          class="carousel__arrow carousel__arrow--next"
+          type="button"
+          (click)="scroll(1)"
+          aria-label="Directorios siguientes"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </button>
+      }
+    </div>
+  </section>
+}

@@ -1,0 +1,17 @@
+// =============================================================================
+//  TechDocs · styles.scss — Hoja de estilos global (entrypoint)
+//  ---------------------------------------------------------------------------
+//  Arquitectura de estilos (design system), mínima y homogénea:
+//
+//    styles/_base.scss → tokens (variables CSS), reset y estilos del documento.
+//    styles/_ui.scss   → primitivos de UI reutilizables (.btn, .input, .pill…).
+//
+//  Regla: los componentes Angular solo llevan su LAYOUT específico; los
+//  patrones compartidos (botones, inputs, píldoras, cards) viven aquí para
+//  homogenizar todo el sitio y cambiarlos en un solo lugar.
+//
+//  La fuente Poppins se carga desde Google Fonts en index.html.
+// =============================================================================
+
+@use 'styles/base';
+@use 'styles/ui';

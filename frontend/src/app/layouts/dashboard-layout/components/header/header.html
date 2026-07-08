@@ -1,0 +1,50 @@
+<header class="header">
+  @if (!pageHeader.folderNav()) {
+    <!-- Breadcrumb + título estáticos desde el `data` de la ruta (p. ej. Configuración).
+         En la vista de documentos, el encabezado lo lleva <app-breadcrumb> en el panel. -->
+    <div class="titles">
+      <nav class="crumbs" aria-label="Ruta">
+        @for (c of pageHeader.crumbs(); track c.label; let last = $last) {
+          @if (c.link && !last) {
+            <a class="crumbs__item" [routerLink]="c.link">{{ c.label }}</a>
+            <span class="crumbs__sep" aria-hidden="true">/</span>
+          } @else {
+            <span class="crumbs__item crumbs__item--current">{{ c.label }}</span>
+          }
+        }
+      </nav>
+      <h1 class="title display">{{ pageHeader.title() }}</h1>
+    </div>
+  }
+
+  @if (pageHeader.folderNav()) {
+    <div class="header__actions">
+      <div class="search">
+        <span class="search__icon" aria-hidden="true">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </span>
+        <input
+          class="search__field"
+          type="search"
+          placeholder="Buscar documentos…"
+          aria-label="Buscar documentos"
+          [value]="filters.term()"
+          (input)="filters.term.set($any($event.target).value)"
+        />
+        <app-document-filters class="search__filters" />
+      </div>
+    </div>
+  }
+</header>

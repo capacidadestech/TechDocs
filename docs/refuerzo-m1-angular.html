@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Refuerzo M1 — Angular · TechDocs</title>
+    <style>
+      /* Tokens del tema "Daylight" (tema claro del design system de TechDocs) */
+      :root {
+        --radius: 0.5rem;
+        --color-background: #f6f7f9;
+        --color-foreground: #1a1f26;
+        --color-surface: #ffffff;
+        --color-surface-elevated: #eef1f5;
+        --color-primary: #2f6f63;
+        --color-primary-foreground: #ffffff;
+        --color-muted: #e7ebf0;
+        --color-muted-foreground: #5b6470;
+        --color-accent: #dceae6;
+        --color-border: #dfe4ea;
+        --color-destructive: #c0392b;
+        --font-display: "Poppins", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, "Cascadia Code", Consolas, monospace;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        background: var(--color-background);
+        color: var(--color-foreground);
+        font-family: var(--font-display);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .wrap {
+        max-width: 60rem;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 6rem;
+      }
+
+      header.page {
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 1.75rem;
+        margin-bottom: 2rem;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.72rem;
+        color: var(--color-muted-foreground);
+        margin: 0 0 0.5rem;
+      }
+
+      h1 {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        margin: 0 0 0.5rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      header.page p {
+        color: var(--color-muted-foreground);
+        margin: 0;
+        max-width: 46rem;
+      }
+
+      /* Índice de anclas */
+      nav.toc {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 3rem;
+      }
+      nav.toc p {
+        margin: 0 0 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.7rem;
+        color: var(--color-muted-foreground);
+      }
+      nav.toc ol {
+        margin: 0;
+        padding-left: 1.25rem;
+        display: grid;
+        gap: 0.4rem;
+      }
+      nav.toc a {
+        color: var(--color-foreground);
+        text-decoration: none;
+        border-bottom: 1px dotted var(--color-border);
+        padding-bottom: 1px;
+      }
+      nav.toc a:hover { color: var(--color-primary); border-color: var(--color-primary); }
+
+      section.topic {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 1.75rem 1.75rem 2rem;
+        margin-bottom: 2rem;
+        scroll-margin-top: 1.5rem;
+      }
+
+      .topic-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.9rem;
+        height: 1.9rem;
+        border-radius: 50%;
+        background: var(--color-primary);
+        color: var(--color-primary-foreground);
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-right: 0.65rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+        margin: 0 0 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+      }
+
+      h3 {
+        font-size: 0.95rem;
+        margin: 1.5rem 0 0.6rem;
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+
+      .def {
+        background: var(--color-accent);
+        border-left: 3px solid var(--color-primary);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        padding: 0.85rem 1.1rem;
+        margin: 0 0 1.25rem;
+      }
+      .def .def-label {
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.64rem;
+        font-weight: 600;
+        color: var(--color-primary);
+        margin-bottom: 0.3rem;
+      }
+      .def p { margin: 0; font-size: 0.94rem; }
+
+      p.lead { margin: 0 0 1rem; }
+
+      ul.points { margin: 0 0 1rem; padding-left: 1.2rem; }
+      ul.points li { margin-bottom: 0.35rem; }
+
+      code.inline {
+        font-family: var(--font-mono);
+        background: var(--color-muted);
+        color: var(--color-foreground);
+        padding: 0.1rem 0.4rem;
+        border-radius: 0.3rem;
+        font-size: 0.86em;
+      }
+
+      pre {
+        background: #f3f5f8;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 1rem 1.15rem;
+        overflow-x: auto;
+        margin: 0.5rem 0 0.75rem;
+      }
+      pre code {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        line-height: 1.7;
+        color: #24303a;
+        white-space: pre;
+      }
+      .cmt { color: #6b7785; font-style: italic; }
+      .kw { color: #0a6b5c; }
+      .str { color: #a8432b; }
+
+      /* Referencia archivo:línea */
+      .ref {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-top: 1rem;
+        padding: 0.65rem 0.9rem;
+        background: var(--color-background);
+        border: 1px dashed var(--color-border);
+        border-radius: var(--radius);
+        font-size: 0.82rem;
+      }
+      .ref .tag {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.62rem;
+        color: var(--color-muted-foreground);
+      }
+      .ref code {
+        font-family: var(--font-mono);
+        color: var(--color-primary);
+        font-size: 0.82rem;
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 0.66rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        border: 1px solid var(--color-border);
+        color: var(--color-muted-foreground);
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+
+      footer.page {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--color-border);
+        color: var(--color-muted-foreground);
+        font-size: 0.8rem;
+      }
+
+      .top-link {
+        float: right;
+        font-size: 0.74rem;
+        color: var(--color-muted-foreground);
+        text-decoration: none;
+      }
+      .top-link:hover { color: var(--color-primary); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <span id="top"></span>
+      <header class="page">
+        <p class="eyebrow">TechDocs · Módulo 1 — Setup y Fundamentos</p>
+        <h1>Refuerzo M1 — Angular</h1>
+        <p>
+          Los cinco ejes de Angular que cubrimos en el M1, con una explicación breve, el patrón de
+          código y la referencia <code class="inline">archivo:línea</code> para abrir la
+          implementación real en el repositorio.
+        </p>
+      </header>
+
+      <nav class="toc">
+        <p>Contenido</p>
+        <ol>
+          <li><a href="#control-flujo">Control de flujo — <code class="inline">@if</code> / <code class="inline">@for</code> (con <code class="inline">track</code>) / <code class="inline">@empty</code></a></li>
+          <li><a href="#standalone-inject">Standalone + <code class="inline">inject()</code></a></li>
+          <li><a href="#directivas">Directivas custom — <code class="inline">appThemeSwatch</code> · <code class="inline">appCellFor</code></a></li>
+          <li><a href="#signals">Signals — <code class="inline">signal()</code> / <code class="inline">computed()</code> / <code class="inline">effect()</code></a></li>
+          <li><a href="#input-output">Inputs / Outputs — <code class="inline">input()</code> / <code class="inline">output()</code> (smart / dumb)</a></li>
+        </ol>
+      </nav>
+
+      <!-- 1 -->
+      <section class="topic" id="control-flujo">
+        <a class="top-link" href="#top">↑ arriba</a>
+        <h2><span class="topic-num">1</span>Control de flujo <span class="badge">@if · @for · @empty</span></h2>
+        <div class="def">
+          <span class="def-label">Definición</span>
+          <p>
+            Bloques de <strong>control de flujo integrados en la plantilla</strong> (<em>built-in control
+            flow</em>): renderizan contenido de forma condicional (<code class="inline">@if</code>),
+            repiten sobre una colección (<code class="inline">@for</code>) o muestran un contenido
+            alternativo cuando esa colección está vacía (<code class="inline">@empty</code>). Forman parte
+            de la sintaxis del template desde Angular v17 y no requieren importar ninguna directiva.
+          </p>
+        </div>
+        <p class="lead">
+          La sintaxis moderna de plantillas (Angular v17+) reemplaza a <code class="inline">*ngIf</code> /
+          <code class="inline">*ngFor</code>. Es parte del lenguaje de la plantilla, más legible y
+          sin necesidad de importar directivas.
+        </p>
+        <ul class="points">
+          <li><code class="inline">@for</code> <strong>exige <code class="inline">track</code></strong>: una clave de identidad por elemento para reconciliar el DOM de forma eficiente (no recrea filas que no cambiaron).</li>
+          <li><code class="inline">@empty</code> es el caso “lista vacía”, integrado dentro del propio <code class="inline">@for</code>.</li>
+          <li><code class="inline">@if (expr; as x)</code> captura el valor en una variable; admite <code class="inline">@else if</code> / <code class="inline">@else</code>.</li>
+        </ul>
+        <h3>Patrón (los tres juntos, en la tabla genérica)</h3>
+        <pre><code>&lt;tbody&gt;
+  <span class="kw">@for</span> (row of rows(); <span class="kw">track</span> rowKey(row)) {
+    &lt;tr&gt;
+      <span class="kw">@for</span> (col of columns(); <span class="kw">track</span> col.key) {
+        &lt;td&gt;
+          <span class="kw">@if</span> (templateFor(col.key); <span class="kw">as</span> tpl) {
+            &lt;ng-container [ngTemplateOutlet]="tpl" /&gt;
+          } <span class="kw">@else if</span> (col.type === <span class="str">'date'</span>) {
+            {{ dateValue(row, col.key) | date: <span class="str">'d MMM y'</span> }}
+          } <span class="kw">@else</span> {
+            {{ value(row, col.key) }}
+          }
+        &lt;/td&gt;
+      }
+    &lt;/tr&gt;
+  } <span class="kw">@empty</span> {
+    &lt;tr&gt;&lt;td&gt;{{ emptyMessage() }}&lt;/td&gt;&lt;/tr&gt;   <span class="cmt">// lista vacía</span>
+  }
+&lt;/tbody&gt;</code></pre>
+        <div class="ref">
+          <span class="tag">Ver en</span>
+          <code>frontend/src/app/shared/components/data-table/data-table.html:5-40</code>
+        </div>
+        <div class="ref">
+          <span class="tag">Más ejemplos</span>
+          <code>features/documents/components/folder-node/folder-node.html</code> (árbol recursivo) · <code>features/documents/pages/document-list/document-list.html</code> (estado vacío de negocio)
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="topic" id="standalone-inject">
+        <a class="top-link" href="#top">↑ arriba</a>
+        <h2><span class="topic-num">2</span>Standalone + <code class="inline">inject()</code></h2>
+        <div class="def">
+          <span class="def-label">Definición</span>
+          <p>
+            <strong>Componente standalone</strong>: componente, directiva o pipe que declara sus propias
+            dependencias en <code class="inline">imports</code> y <strong>no pertenece a ningún
+            <code class="inline">NgModule</code></strong>. <strong><code class="inline">inject()</code></strong>:
+            función que obtiene una dependencia del inyector de DI en el contexto de construcción, como
+            alternativa a recibirla por el constructor.
+          </p>
+        </div>
+        <p class="lead">
+          No hay <code class="inline">NgModule</code>: cada componente es <em>standalone</em> y declara
+          sus dependencias en <code class="inline">imports</code>. La inyección se hace con la función
+          <code class="inline">inject()</code> en lugar del constructor.
+        </p>
+        <ul class="points">
+          <li>Menos ceremonia: no se registran declaraciones en módulos; el componente es autocontenido.</li>
+          <li><code class="inline">inject()</code> funciona en campos de clase y funciones → código más conciso y componible.</li>
+          <li>Los servicios usan <code class="inline">@Injectable({ providedIn: 'root' })</code> → singleton de toda la app.</li>
+        </ul>
+        <h3>Patrón (componente smart)</h3>
+        <pre><code><span class="kw">@Component</span>({
+  selector: <span class="str">'app-document-list'</span>,
+  imports: [EmptyState, DataTable, CellFor, Paginator, /* … */],   <span class="cmt">// sin NgModule</span>
+  templateUrl: <span class="str">'./document-list.html'</span>,
+})
+<span class="kw">export class</span> DocumentList {
+  <span class="kw">private readonly</span> documentService = inject(DocumentService);   <span class="cmt">// DI funcional</span>
+  <span class="kw">private readonly</span> folderService   = inject(FolderService);
+  <span class="kw">private readonly</span> filters         = inject(DocumentFilterService);
+}</code></pre>
+        <div class="ref">
+          <span class="tag">Ver en</span>
+          <code>frontend/src/app/features/documents/pages/document-list/document-list.ts:27-48</code>
+        </div>
+        <div class="ref">
+          <span class="tag">Servicio</span>
+          <code>frontend/src/app/core/theme/theme.service.ts:13</code> (<code>@Injectable providedIn: 'root'</code>)
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="topic" id="directivas">
+        <a class="top-link" href="#top">↑ arriba</a>
+        <h2><span class="topic-num">3</span>Directivas custom <span class="badge">tema débil M1</span></h2>
+        <div class="def">
+          <span class="def-label">Definición</span>
+          <p>
+            <strong>Directiva</strong>: clase decorada con <code class="inline">@Directive</code> que
+            añade comportamiento al DOM. Las <strong>de atributo</strong> modifican la apariencia o el
+            comportamiento de un elemento existente (eventos, clases, estilos); las
+            <strong>estructurales</strong> añaden o quitan elementos del DOM operando sobre una
+            <code class="inline">&lt;ng-template&gt;</code>.
+          </p>
+        </div>
+        <p class="lead">
+          Implementamos las dos familias: una <strong>de atributo</strong> (decora un elemento
+          existente) y una <strong>estructural</strong> (trabaja con <code class="inline">&lt;ng-template&gt;</code>).
+        </p>
+
+        <h3>a) De atributo — <code class="inline">appThemeSwatch</code></h3>
+        <p class="lead">Escucha eventos y alterna clases usando el objeto <code class="inline">host</code> del decorador (forma v22, sin <code class="inline">@HostListener</code>).</p>
+        <pre><code><span class="kw">@Directive</span>({
+  selector: <span class="str">'[appThemeSwatch]'</span>,
+  host: {
+    <span class="str">'(mouseenter)'</span>: <span class="str">'preview()'</span>,
+    <span class="str">'(click)'</span>: <span class="str">'select()'</span>,
+    <span class="str">'[class.is-active]'</span>: <span class="str">'isActive()'</span>,   <span class="cmt">// class binding reactivo</span>
+  },
+})
+<span class="kw">export class</span> ThemeSwatch {
+  <span class="kw">readonly</span> appThemeSwatch = input.required&lt;string&gt;();   <span class="cmt">// id del tema</span>
+}</code></pre>
+        <div class="ref">
+          <span class="tag">Ver en</span>
+          <code>frontend/src/app/shared/directives/theme-swatch.directive.ts:11-39</code>
+        </div>
+        <div class="ref">
+          <span class="tag">Uso</span>
+          <code>features/settings/pages/settings-page/settings-page.html:8</code>
+        </div>
+
+        <h3>b) Estructural — <code class="inline">appCellFor</code></h3>
+        <p class="lead">Registra una <code class="inline">&lt;ng-template&gt;</code> como plantilla de celda por clave de columna → hace que la <code class="inline">DataTable</code> sea genérica.</p>
+        <pre><code><span class="kw">@Directive</span>({ selector: <span class="str">'ng-template[appCellFor]'</span> })
+<span class="kw">export class</span> CellFor {
+  <span class="kw">readonly</span> column   = input.required&lt;string&gt;({ alias: <span class="str">'appCellFor'</span> });
+  <span class="kw">readonly</span> template = inject(TemplateRef);   <span class="cmt">// la &lt;ng-template&gt; anfitriona</span>
+}
+
+<span class="cmt">// Uso:</span>
+&lt;ng-template appCellFor=<span class="str">"status"</span> let-row&gt;
+  &lt;app-status-badge [status]="row.status" /&gt;
+&lt;/ng-template&gt;</code></pre>
+        <div class="ref">
+          <span class="tag">Ver en</span>
+          <code>frontend/src/app/shared/components/data-table/cell-for.directive.ts:12-26</code>
+        </div>
+        <div class="ref">
+          <span class="tag">Uso</span>
+          <code>features/documents/pages/document-list/document-list.html:19-52</code>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="topic" id="signals">
+        <a class="top-link" href="#top">↑ arriba</a>
+        <h2><span class="topic-num">4</span>Signals <span class="badge">signal · computed · effect</span></h2>
+        <div class="def">
+          <span class="def-label">Definición</span>
+          <p>
+            <strong>Signal</strong>: primitiva reactiva que envuelve un valor y notifica automáticamente
+            a quien lo consume cuando cambia. <code class="inline">signal()</code> crea un valor mutable;
+            <code class="inline">computed()</code> deriva un valor <em>memoizado</em> a partir de otras
+            señales; <code class="inline">effect()</code> ejecuta un efecto secundario cada vez que cambian
+            las señales que lee.
+          </p>
+        </div>
+        <p class="lead">
+          El modelo de reactividad de Angular moderno. Estado granular que avisa a quien lo consume
+          cuando cambia, sin <code class="inline">zone.js</code> de por medio.
+        </p>
+        <ul class="points">
+          <li><code class="inline">signal()</code>: estado mutable reactivo — se lee como función <code class="inline">x()</code> y se cambia con <code class="inline">.set()</code> / <code class="inline">.update()</code>.</li>
+          <li><code class="inline">computed()</code>: valor derivado, memoizado; se recalcula solo cuando cambian sus dependencias.</li>
+          <li><code class="inline">effect()</code>: efecto secundario que corre cuando cambia lo que lee (sincronizar, reaccionar).</li>
+        </ul>
+        <h3>Patrón (los tres en el listado)</h3>
+        <pre><code><span class="cmt">// signal() — estado base</span>
+<span class="kw">protected readonly</span> page = signal(1);
+<span class="kw">protected readonly</span> pageSize = signal(5);
+
+<span class="cmt">// computed() — derivado (filtra por carpeta + búsqueda + estado + tipo)</span>
+<span class="kw">protected readonly</span> filtered = computed(() =&gt;
+  this.documentService.documents().filter(/* … */));
+<span class="kw">protected readonly</span> paged = computed(() =&gt; {
+  <span class="kw">const</span> start = (this.page() - 1) * this.pageSize();
+  <span class="kw">return</span> this.filtered().slice(start, start + this.pageSize());
+});
+
+<span class="cmt">// effect() — al cambiar de carpeta o filtros, vuelve a la página 1</span>
+constructor() {
+  effect(() =&gt; {
+    this.folderService.selectedFolderId();
+    this.filters.term(); this.filters.status(); this.filters.type();
+    this.page.set(1);
+  });
+}</code></pre>
+        <div class="ref">
+          <span class="tag">Ver en</span>
+          <code>frontend/src/app/features/documents/pages/document-list/document-list.ts</code> — signal <code>:62-69</code> · computed <code>:79-104</code> · effect <code>:52-58</code>
+        </div>
+        <div class="ref">
+          <span class="tag">Signal en servicio</span>
+          <code>features/documents/services/document-filter.service.ts:13-22</code> (estado compartido + <code>.asReadonly()</code>)
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="topic" id="input-output">
+        <a class="top-link" href="#top">↑ arriba</a>
+        <h2><span class="topic-num">5</span>Inputs / Outputs <span class="badge">smart / dumb</span></h2>
+        <div class="def">
+          <span class="def-label">Definición</span>
+          <p>
+            API basada en <em>signals</em> para la comunicación entre componentes:
+            <strong><code class="inline">input()</code></strong> declara una propiedad de entrada
+            (padre → hijo) como señal de solo lectura, y <strong><code class="inline">output()</code></strong>
+            declara un emisor de eventos (hijo → padre). Reemplazan a los decoradores
+            <code class="inline">@Input</code> / <code class="inline">@Output</code>.
+          </p>
+        </div>
+        <p class="lead">
+          <code class="inline">input()</code> y <code class="inline">output()</code> (signal-based) reemplazan a
+          <code class="inline">@Input</code> / <code class="inline">@Output</code>. Los componentes
+          <strong>dumb</strong> solo reciben datos por <code class="inline">input()</code> y notifican por
+          <code class="inline">output()</code>; el <strong>smart</strong> orquesta estado y servicios.
+        </p>
+        <ul class="points">
+          <li>Un <code class="inline">input()</code> es un signal de solo lectura → se integra con <code class="inline">computed()</code> sin esfuerzo.</li>
+          <li>Admite <code class="inline">input.required&lt;T&gt;()</code>, valor por defecto y <code class="inline">alias</code>.</li>
+          <li>Esta separación smart/dumb habilita <code class="inline">OnPush</code> en M5 sin refactor.</li>
+        </ul>
+        <h3>Patrón (componentes dumb)</h3>
+        <pre><code><span class="cmt">// DataTable (dumb): solo recibe datos</span>
+<span class="kw">readonly</span> columns      = input.required&lt;TableColumn[]&gt;();
+<span class="kw">readonly</span> rows         = input.required&lt;readonly unknown[]&gt;();
+<span class="kw">readonly</span> emptyMessage = input&lt;string&gt;(<span class="str">'No hay resultados.'</span>);   <span class="cmt">// con default</span>
+
+<span class="cmt">// Modal (dumb): recibe heading, emite close</span>
+<span class="kw">readonly</span> heading = input(<span class="str">''</span>);
+<span class="kw">readonly</span> close   = output&lt;void&gt;();</code></pre>
+        <div class="ref">
+          <span class="tag">Ver en</span>
+          <code>frontend/src/app/shared/components/data-table/data-table.ts:21-26</code> (inputs)
+        </div>
+        <div class="ref">
+          <span class="tag">Input + Output</span>
+          <code>frontend/src/app/shared/components/modal/modal.ts:18-19</code>
+        </div>
+        <div class="ref">
+          <span class="tag">Smart que orquesta</span>
+          <code>features/documents/pages/document-list/document-list.ts</code> (consume los dumb)
+        </div>
+      </section>
+
+      <footer class="page">
+        Refuerzo del Módulo 1 — solo Angular. Tema visual: paleta “Daylight” (claro) del design system de TechDocs.
+        Referencias verificadas contra el código en la rama <code class="inline">dev</code>.
+      </footer>
+    </div>
+  </body>
+</html>
