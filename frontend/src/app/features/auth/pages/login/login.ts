@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 type FieldName = 'email' | 'password';
 
@@ -18,6 +19,9 @@ type FieldName = 'email' | 'password';
 export class Login {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
+
+  //se injecta servicio de autenticación
+  private readonly authService = inject(AuthService);
 
   protected readonly passwordVisible = signal(false);
   protected readonly submitted = signal(false);
@@ -58,6 +62,10 @@ export class Login {
     }
     // Stub: la autenticación real (JWT) llega en M3. Aquí solo mostramos un loading
     // breve (estilo demo) antes de entrar al dashboard.
+
+    //invoca a servicio de autenticación para loguear al usuario
+    this.authService.login();
+
     this.loading.set(true);
     setTimeout(() => this.router.navigateByUrl('/dashboard'), 1800);
   }

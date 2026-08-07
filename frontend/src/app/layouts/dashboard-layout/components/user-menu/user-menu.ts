@@ -1,5 +1,6 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../../features/auth/services/auth.service';
 
 /**
  * Menú de usuario (dumb): botón-avatar (solo icono) + dropdown con "Cerrar sesión".
@@ -14,6 +15,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './user-menu.scss',
 })
 export class UserMenu {
+  private authService = inject(AuthService);
   /** Dirección del dropdown: `'down'` (default) o `'up'` (cuando está abajo del todo). */
   readonly placement = input<'down' | 'up'>('down');
 
@@ -30,5 +32,9 @@ export class UserMenu {
 
   protected close(): void {
     this.open.set(false);
+  }
+
+  protected closeSession(): void {
+    this.authService.logout();
   }
 }

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { DashboardLayout } from './layouts/dashboard-layout/dashboard-layout';
 import { AuthLayout } from './layouts/auth-layout/auth-layout';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -11,7 +12,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardLayout,
-    // En M3 esta sección se protege con authGuard.
+    canActivate: [authGuard],
     children: [
       {
         path: 'settings',
