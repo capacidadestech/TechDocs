@@ -1,0 +1,71 @@
+/* =========================================
+   6. LOADER (PORTAL INTERDIMENSIONAL)
+   ========================================= */
+.loader-container {
+  margin: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  width: 100%;
+}
+
+.portal-loader {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  /* Degradado cónico para simular el remolino del portal */
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #97ce4c 0%,   /* Verde */
+    #00b0c8 25%,  /* Cian */
+    #1a1a2e 50%,  /* Fondo oscuro (hace el efecto de hueco) */
+    #00b0c8 75%,  /* Cian */
+    #97ce4c 100%  /* Verde */
+  );
+  /* Sombra de neón fuerte */
+  box-shadow: 0 0 20px #97ce4c, 0 0 40px #00b0c8;
+  /* Definimos la animación: nombre, duración, curva de tiempo, repetición */
+  animation: swirlPortal 1.5s linear infinite;
+  position: relative;
+}
+
+/* Un pequeño círculo interior para dar profundidad */
+.portal-loader::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  background-color: #1a1a2e; /* Color del fondo */
+  border-radius: 50%;
+  box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+.loader-text {
+  margin-top: 2rem;
+  color: #97ce4c;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Efecto de parpadeo suave */
+  animation: pulseText 1.5s ease-in-out infinite;
+}
+
+/* =========================================
+   7. ANIMACIONES (KEYFRAMES)
+   ========================================= */
+@keyframes swirlPortal {
+  to {
+    transform: rotate(360deg); /* Gira el portal completo */
+  }
+}
+
+@keyframes pulseText {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; } /* Hace el texto semitransparente */
+}

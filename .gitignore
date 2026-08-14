@@ -31,6 +31,7 @@ yarn-error.log*
 
 # Editor / OS
 .idea/
+.vscode
 *.swp
 .DS_Store
 Thumbs.db

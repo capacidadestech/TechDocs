@@ -1,0 +1,12 @@
+/* Importamos una fuente moderna y amigable de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+
+.app-container {
+  min-height: 100vh;
+  background-color: #1a1a2e;
+  display: flex;
+  flex-direction: column; /* Apila el header y la lista verticalmente */
+  align-items: center;
+  padding: 3rem 1rem;
+  font-family: 'Nunito', sans-serif;
+}
