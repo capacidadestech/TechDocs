@@ -1,0 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --animate-shake-error: shake-error 0.4s ease-in-out;
+
+  @keyframes shake-error {
+    0%, 100% { transform: translateX(0); }
+    25%, 75% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+  }
+}

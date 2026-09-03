@@ -1,0 +1,1685 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Arquitecturas React</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Arquitecturas React" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Arquitecturas React&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 6px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;arch-react-mentor&quot;&gt;
+  &lt;style&gt;
+    #arch-react-mentor {
+      color: var(--foreground);
+      width: 100%;
+      container-type: inline-size;
+    }
+    #arch-react-mentor * { box-sizing: border-box; }
+    #arch-react-mentor .arch-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    #arch-react-mentor .arch-title-wrap { min-width: 0; }
+    #arch-react-mentor h2 { margin: 0; }
+    #arch-react-mentor .arch-subtitle {
+      color: var(--muted-foreground);
+      margin: 4px 0 0;
+    }
+    #arch-react-mentor .arch-switch {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+    #arch-react-mentor .arch-status {
+      display: flex;
+      align-items: center;
+      min-height: 42px;
+      margin: 0 0 12px;
+      padding: 8px 12px;
+      border-left: 3px solid var(--viz-series-1);
+      background: color-mix(in srgb, var(--muted) 58%, transparent);
+      color: var(--foreground);
+    }
+    #arch-react-mentor .arch-figure {
+      position: relative;
+      min-height: 430px;
+      isolation: isolate;
+    }
+    #arch-react-mentor .arch-edges {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: visible;
+    }
+    #arch-react-mentor .arch-edge {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 1.5;
+      opacity: .6;
+      transition: opacity .18s ease, stroke-width .18s ease, stroke .18s ease;
+    }
+    #arch-react-mentor .arch-edge.is-active {
+      stroke: var(--viz-series-1);
+      stroke-width: 3;
+      opacity: 1;
+    }
+    #arch-react-mentor .arch-edge.is-muted { opacity: .12; }
+    #arch-react-mentor .arch-nodes {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(8, minmax(74px, 1fr));
+      grid-template-rows: repeat(2, minmax(124px, auto));
+      align-items: center;
+      gap: 52px 12px;
+      min-height: 390px;
+      padding: 34px 0 18px;
+    }
+    #arch-react-mentor .arch-node {
+      appearance: none;
+      display: flex;
+      min-width: 0;
+      min-height: 72px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 8px;
+      border: 1px solid color-mix(in srgb, var(--node-color) 55%, var(--border));
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--node-color) 13%, var(--card));
+      color: var(--card-foreground);
+      font: inherit;
+      font-weight: 500;
+      text-align: center;
+      overflow-wrap: anywhere;
+      cursor: pointer;
+      transition: opacity .18s ease, transform .18s ease, background .18s ease;
+    }
+    #arch-react-mentor .arch-node:hover { transform: translateY(-2px); }
+    #arch-react-mentor .arch-node[aria-pressed=&quot;true&quot;] {
+      background: color-mix(in srgb, var(--node-color) 28%, var(--card));
+      outline: 3px solid color-mix(in srgb, var(--node-color) 55%, transparent);
+      outline-offset: 2px;
+    }
+    #arch-react-mentor .arch-node.is-related {
+      background: color-mix(in srgb, var(--node-color) 22%, var(--card));
+    }
+    #arch-react-mentor .arch-node.is-muted { opacity: .28; }
+    #arch-react-mentor .arch-node small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted-foreground);
+      font-weight: 400;
+    }
+    #arch-react-mentor .arch-stage {
+      position: absolute;
+      top: 4px;
+      color: var(--muted-foreground);
+      text-align: center;
+      pointer-events: none;
+    }
+    #arch-react-mentor .arch-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 16px;
+      margin-top: 4px;
+      color: var(--muted-foreground);
+    }
+    #arch-react-mentor .arch-key {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    #arch-react-mentor .arch-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--node-color);
+    }
+    #arch-react-mentor .arch-line {
+      width: 24px;
+      height: 2px;
+      background: var(--border);
+    }
+    #arch-react-mentor .c-route { --node-color: var(--viz-series-1); }
+    #arch-react-mentor .c-present { --node-color: var(--viz-series-2); }
+    #arch-react-mentor .c-state { --node-color: var(--viz-series-3); }
+    #arch-react-mentor .c-infra { --node-color: var(--viz-series-4); }
+    #arch-react-mentor .c-domain { --node-color: var(--viz-series-5); }
+    #arch-react-mentor .c-ui { --node-color: var(--viz-series-6); }
+    #arch-react-mentor .c-outside { --node-color: var(--viz-series-4); }
+    #arch-react-mentor .c-adapter { --node-color: var(--viz-series-2); }
+    #arch-react-mentor .c-app { --node-color: var(--viz-series-3); }
+    #arch-react-mentor .c-entity { --node-color: var(--viz-series-5); }
+    @media (max-width: 800px) {
+      #arch-react-mentor .arch-head { display: block; }
+      #arch-react-mentor .arch-switch { margin-top: 12px; }
+      #arch-react-mentor .arch-figure { min-height: 0; }
+      #arch-react-mentor .arch-nodes {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: none;
+        gap: 26px;
+        min-height: 0;
+        padding: 30px 22px 18px;
+      }
+      #arch-react-mentor .arch-node {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        width: min(100%, 420px);
+        min-height: 54px;
+        justify-self: center;
+      }
+      #arch-react-mentor .arch-stage { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #arch-react-mentor .arch-node,
+      #arch-react-mentor .arch-edge { transition: none; }
+    }
+  &lt;/style&gt;
+
+  &lt;div class=&quot;arch-head&quot;&gt;
+    &lt;div class=&quot;arch-title-wrap&quot;&gt;
+      &lt;h2 id=&quot;arch-react-title&quot;&gt;Arquitectura del proyecto React&lt;/h2&gt;
+      &lt;p class=&quot;arch-subtitle&quot; id=&quot;arch-react-subtitle&quot;&gt;Clean code pragmático · arquitectura por feature&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;arch-switch&quot; role=&quot;group&quot; aria-label=&quot;Cambiar arquitectura&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; data-view=&quot;current&quot; aria-pressed=&quot;true&quot;&gt;Proyecto actual&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-view=&quot;theory&quot; aria-pressed=&quot;false&quot;&gt;Clean Architecture&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;p class=&quot;arch-status&quot; id=&quot;arch-react-detail&quot; aria-live=&quot;polite&quot;&gt;Selecciona un nodo para seguir sus relaciones.&lt;/p&gt;
+
+  &lt;section class=&quot;arch-figure&quot; id=&quot;arch-react-figure&quot; aria-labelledby=&quot;arch-react-title&quot;&gt;
+    &lt;svg class=&quot;arch-edges&quot; id=&quot;arch-react-edges&quot; aria-hidden=&quot;true&quot;&gt;
+      &lt;defs&gt;
+        &lt;marker id=&quot;arch-arrow&quot; markerWidth=&quot;8&quot; markerHeight=&quot;8&quot; refX=&quot;7&quot; refY=&quot;4&quot; orient=&quot;auto&quot; markerUnits=&quot;strokeWidth&quot;&gt;
+          &lt;path d=&quot;M0,0 L8,4 L0,8 Z&quot; fill=&quot;var(--border)&quot;&gt;&lt;/path&gt;
+        &lt;/marker&gt;
+        &lt;marker id=&quot;arch-arrow-active&quot; markerWidth=&quot;8&quot; markerHeight=&quot;8&quot; refX=&quot;7&quot; refY=&quot;4&quot; orient=&quot;auto&quot; markerUnits=&quot;strokeWidth&quot;&gt;
+          &lt;path d=&quot;M0,0 L8,4 L0,8 Z&quot; fill=&quot;var(--viz-series-1)&quot;&gt;&lt;/path&gt;
+        &lt;/marker&gt;
+      &lt;/defs&gt;
+    &lt;/svg&gt;
+    &lt;div class=&quot;arch-nodes&quot; id=&quot;arch-react-nodes&quot;&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;div class=&quot;arch-legend text-small&quot; id=&quot;arch-react-legend&quot; aria-label=&quot;Leyenda&quot;&gt;&lt;/div&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;arch-react-mentor&#x27;);
+      const nodesHost = document.getElementById(&#x27;arch-react-nodes&#x27;);
+      const figure = document.getElementById(&#x27;arch-react-figure&#x27;);
+      const svg = document.getElementById(&#x27;arch-react-edges&#x27;);
+      const detail = document.getElementById(&#x27;arch-react-detail&#x27;);
+      const subtitle = document.getElementById(&#x27;arch-react-subtitle&#x27;);
+      const legend = document.getElementById(&#x27;arch-react-legend&#x27;);
+      const ns = &#x27;http://www.w3.org/2000/svg&#x27;;
+
+      const views = {
+        current: {
+          subtitle: &#x27;Clean code pragmático · arquitectura por feature&#x27;,
+          prompt: &#x27;Selecciona un nodo para seguir el flujo real de la aplicación.&#x27;,
+          legend: [
+            [&#x27;c-route&#x27;, &#x27;Ruta&#x27;], [&#x27;c-present&#x27;, &#x27;Presentación&#x27;], [&#x27;c-state&#x27;, &#x27;Estado / hooks&#x27;],
+            [&#x27;c-infra&#x27;, &#x27;Infraestructura&#x27;], [&#x27;c-domain&#x27;, &#x27;Dominio&#x27;], [&#x27;c-ui&#x27;, &#x27;UI&#x27;]
+          ],
+          stages: [
+            { label: &#x27;Entrada&#x27;, col: 1 }, { label: &#x27;Enrutado&#x27;, col: 2 },
+            { label: &#x27;Página&#x27;, col: 3 }, { label: &#x27;Orquestación&#x27;, col: 4 },
+            { label: &#x27;Servicio&#x27;, col: 5 }, { label: &#x27;Modelo&#x27;, col: 6 },
+            { label: &#x27;Render&#x27;, col: 8 }
+          ],
+          nodes: [
+            { id: &#x27;url&#x27;, label: &#x27;URL&#x27;, note: &#x27;/ · /characters/:id&#x27;, cls: &#x27;c-route&#x27;, col: 1, row: 1, detail: &#x27;La URL inicia el flujo y decide qué página debe mostrarse.&#x27; },
+            { id: &#x27;router&#x27;, label: &#x27;AppRouter&#x27;, note: &#x27;Routes + CharactersProvider&#x27;, cls: &#x27;c-route&#x27;, col: 2, row: 1, detail: &#x27;AppRouter relaciona rutas con páginas y envuelve el árbol con CharactersProvider.&#x27; },
+            { id: &#x27;catalog&#x27;, label: &#x27;CatalogPage&#x27;, note: &#x27;catálogo y filtros&#x27;, cls: &#x27;c-present&#x27;, col: 3, row: 1, detail: &#x27;CatalogPage consume el contexto y compone filtros, lista y paginación.&#x27; },
+            { id: &#x27;detailpage&#x27;, label: &#x27;CharacterDetailPage&#x27;, note: &#x27;useParams + estados&#x27;, cls: &#x27;c-present&#x27;, col: 3, row: 2, detail: &#x27;CharacterDetailPage lee :id y representa carga, error, no encontrado o detalle.&#x27; },
+            { id: &#x27;context&#x27;, label: &#x27;CharactersContext&#x27;, note: &#x27;filtros + página&#x27;, cls: &#x27;c-state&#x27;, col: 4, row: 1, detail: &#x27;CharactersContext conserva filtros y página al navegar entre catálogo y detalle.&#x27; },
+            { id: &#x27;hooks&#x27;, label: &#x27;Hooks&#x27;, note: &#x27;useCharacters · useCharacterDetail&#x27;, cls: &#x27;c-state&#x27;, col: 4, row: 2, detail: &#x27;Los hooks coordinan estado asíncrono, AbortController, reintento y casos visuales.&#x27; },
+            { id: &#x27;api&#x27;, label: &#x27;rickAndMortyCharacterApi&#x27;, note: &#x27;fetch + DTO mapping&#x27;, cls: &#x27;c-infra&#x27;, col: 5, row: 1, detail: &#x27;Infraestructura centraliza HTTP, parámetros, 404 y transformación de DTOs.&#x27; },
+            { id: &#x27;domain&#x27;, label: &#x27;Entidades de dominio&#x27;, note: &#x27;Character · CharacterDetail&#x27;, cls: &#x27;c-domain&#x27;, col: 6, row: 1, detail: &#x27;Los tipos de dominio describen los datos que consume la aplicación, separados del DTO externo.&#x27; },
+            { id: &#x27;ui&#x27;, label: &#x27;Componentes UI&#x27;, note: &#x27;cards · estados · paginación&#x27;, cls: &#x27;c-ui&#x27;, col: 8, row: 1, detail: &#x27;La UI presenta entidades y estados mediante componentes de feature y componentes shared.&#x27; }
+          ],
+          edges: [
+            [&#x27;url&#x27;, &#x27;router&#x27;], [&#x27;router&#x27;, &#x27;catalog&#x27;], [&#x27;router&#x27;, &#x27;detailpage&#x27;],
+            [&#x27;catalog&#x27;, &#x27;context&#x27;], [&#x27;catalog&#x27;, &#x27;hooks&#x27;], [&#x27;detailpage&#x27;, &#x27;hooks&#x27;],
+            [&#x27;context&#x27;, &#x27;hooks&#x27;], [&#x27;hooks&#x27;, &#x27;api&#x27;], [&#x27;api&#x27;, &#x27;domain&#x27;],
+            [&#x27;domain&#x27;, &#x27;ui&#x27;], [&#x27;context&#x27;, &#x27;ui&#x27;], [&#x27;hooks&#x27;, &#x27;ui&#x27;]
+          ]
+        },
+        theory: {
+          subtitle: &#x27;Modelo teórico · dependencias siempre hacia adentro&#x27;,
+          prompt: &#x27;Selecciona una capa para ver qué depende de ella y hacia dónde puede depender.&#x27;,
+          legend: [
+            [&#x27;c-outside&#x27;, &#x27;Frameworks &amp; Drivers&#x27;], [&#x27;c-adapter&#x27;, &#x27;Interface Adapters&#x27;],
+            [&#x27;c-app&#x27;, &#x27;Use Cases / Application&#x27;], [&#x27;c-entity&#x27;, &#x27;Entities / Domain&#x27;]
+          ],
+          stages: [
+            { label: &#x27;Exterior&#x27;, col: 1 }, { label: &#x27;Adaptación&#x27;, col: 3 },
+            { label: &#x27;Aplicación&#x27;, col: 5 }, { label: &#x27;Centro&#x27;, col: 8 }
+          ],
+          nodes: [
+            { id: &#x27;react&#x27;, label: &#x27;React + Router&#x27;, note: &#x27;framework de UI&#x27;, cls: &#x27;c-outside&#x27;, col: 1, row: 1, detail: &#x27;React es un detalle externo: entrega eventos y renderiza resultados.&#x27; },
+            { id: &#x27;external&#x27;, label: &#x27;API / fetch&#x27;, note: &#x27;driver externo&#x27;, cls: &#x27;c-outside&#x27;, col: 1, row: 2, detail: &#x27;La API externa es un driver reemplazable y no debe definir el dominio.&#x27; },
+            { id: &#x27;presenter&#x27;, label: &#x27;Controller / Presenter&#x27;, note: &#x27;adapta UI ↔ aplicación&#x27;, cls: &#x27;c-adapter&#x27;, col: 3, row: 1, detail: &#x27;El adaptador traduce eventos y modelos entre React y los casos de uso.&#x27; },
+            { id: &#x27;repository&#x27;, label: &#x27;Repository Adapter&#x27;, note: &#x27;implementa el puerto&#x27;, cls: &#x27;c-adapter&#x27;, col: 3, row: 2, detail: &#x27;El repositorio concreto implementa un puerto interno y encapsula HTTP o persistencia.&#x27; },
+            { id: &#x27;usecases&#x27;, label: &#x27;Use Cases&#x27;, note: &#x27;reglas de aplicación&#x27;, cls: &#x27;c-app&#x27;, col: 5, row: 1, detail: &#x27;Los casos de uso coordinan el comportamiento sin depender de React ni de fetch.&#x27; },
+            { id: &#x27;ports&#x27;, label: &#x27;Ports / Interfaces&#x27;, note: &#x27;contratos internos&#x27;, cls: &#x27;c-app&#x27;, col: 5, row: 2, detail: &#x27;Los puertos pertenecen al interior; los adaptadores externos dependen de estos contratos.&#x27; },
+            { id: &#x27;entities&#x27;, label: &#x27;Entities / Domain&#x27;, note: &#x27;reglas esenciales&#x27;, cls: &#x27;c-entity&#x27;, col: 8, row: 1, detail: &#x27;El dominio ocupa el centro y no conoce frameworks, UI, HTTP ni persistencia.&#x27; }
+          ],
+          edges: [
+            [&#x27;react&#x27;, &#x27;presenter&#x27;], [&#x27;external&#x27;, &#x27;repository&#x27;],
+            [&#x27;presenter&#x27;, &#x27;usecases&#x27;], [&#x27;repository&#x27;, &#x27;ports&#x27;],
+            [&#x27;usecases&#x27;, &#x27;entities&#x27;], [&#x27;ports&#x27;, &#x27;entities&#x27;]
+          ]
+        }
+      };
+
+      let activeView = &#x27;current&#x27;;
+      let selected = null;
+
+      function escapeText(value) {
+        return String(value).replace(/[&amp;&lt;&gt;&quot;&#x27;]/g, (char) =&gt; ({ &#x27;&amp;&#x27;: &#x27;&amp;amp;&#x27;, &#x27;&lt;&#x27;: &#x27;&amp;lt;&#x27;, &#x27;&gt;&#x27;: &#x27;&amp;gt;&#x27;, &#x27;&quot;&#x27;: &#x27;&amp;quot;&#x27;, &quot;&#x27;&quot;: &#x27;&amp;#39;&#x27; })[char]);
+      }
+
+      function renderLegend(items) {
+        legend.innerHTML = items.map(([cls, label]) =&gt;
+          `&lt;span class=&quot;arch-key&quot;&gt;&lt;span class=&quot;arch-dot ${cls}&quot;&gt;&lt;/span&gt;${escapeText(label)}&lt;/span&gt;`
+        ).join(&#x27;&#x27;) + &#x27;&lt;span class=&quot;arch-key&quot;&gt;&lt;span class=&quot;arch-line&quot;&gt;&lt;/span&gt;flujo / dependencia&lt;/span&gt;&#x27;;
+      }
+
+      function render() {
+        const view = views[activeView];
+        subtitle.textContent = view.subtitle;
+        detail.textContent = view.prompt;
+        selected = null;
+        nodesHost.innerHTML = &#x27;&#x27;;
+
+        view.stages.forEach((stage) =&gt; {
+          const label = document.createElement(&#x27;span&#x27;);
+          label.className = &#x27;arch-stage text-small&#x27;;
+          label.textContent = stage.label;
+          label.style.left = `calc(${((stage.col - 0.5) / 8) * 100}% - 38px)`;
+          label.style.width = &#x27;76px&#x27;;
+          nodesHost.appendChild(label);
+        });
+
+        view.nodes.forEach((node) =&gt; {
+          const button = document.createElement(&#x27;button&#x27;);
+          button.type = &#x27;button&#x27;;
+          button.className = `arch-node ${node.cls}`;
+          button.dataset.node = node.id;
+          button.style.gridColumn = String(node.col);
+          button.style.gridRow = String(node.row);
+          button.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;);
+          button.setAttribute(&#x27;aria-label&#x27;, `${node.label}: ${node.note}`);
+          button.innerHTML = `&lt;span&gt;${escapeText(node.label)}&lt;small&gt;${escapeText(node.note)}&lt;/small&gt;&lt;/span&gt;`;
+          button.addEventListener(&#x27;click&#x27;, () =&gt; selectNode(node.id));
+          nodesHost.appendChild(button);
+        });
+
+        renderLegend(view.legend);
+        requestAnimationFrame(drawEdges);
+      }
+
+      function selectNode(id) {
+        selected = selected === id ? null : id;
+        const view = views[activeView];
+        const related = new Set();
+        if (selected) {
+          related.add(selected);
+          view.edges.forEach(([from, to]) =&gt; {
+            if (from === selected || to === selected) {
+              related.add(from);
+              related.add(to);
+            }
+          });
+        }
+
+        nodesHost.querySelectorAll(&#x27;.arch-node&#x27;).forEach((element) =&gt; {
+          const idValue = element.dataset.node;
+          const isSelected = idValue === selected;
+          element.setAttribute(&#x27;aria-pressed&#x27;, String(isSelected));
+          element.classList.toggle(&#x27;is-related&#x27;, Boolean(selected &amp;&amp; related.has(idValue) &amp;&amp; !isSelected));
+          element.classList.toggle(&#x27;is-muted&#x27;, Boolean(selected &amp;&amp; !related.has(idValue)));
+        });
+
+        const item = view.nodes.find((node) =&gt; node.id === selected);
+        detail.textContent = item ? `${item.label} — ${item.detail}` : view.prompt;
+        drawEdges();
+      }
+
+      function connectorPath(fromRect, toRect, figureRect, vertical) {
+        const fx = vertical ? fromRect.left + fromRect.width / 2 : fromRect.right;
+        const fy = vertical ? fromRect.bottom : fromRect.top + fromRect.height / 2;
+        const tx = vertical ? toRect.left + toRect.width / 2 : toRect.left;
+        const ty = vertical ? toRect.top : toRect.top + toRect.height / 2;
+        const x1 = fx - figureRect.left;
+        const y1 = fy - figureRect.top;
+        const x2 = tx - figureRect.left;
+        const y2 = ty - figureRect.top;
+        if (vertical) {
+          const midY = (y1 + y2) / 2;
+          return `M ${x1} ${y1} C ${x1} ${midY}, ${x2} ${midY}, ${x2} ${y2}`;
+        }
+        const midX = (x1 + x2) / 2;
+        return `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
+      }
+
+      function drawEdges() {
+        const view = views[activeView];
+        svg.querySelectorAll(&#x27;.arch-edge&#x27;).forEach((path) =&gt; path.remove());
+        const figureRect = figure.getBoundingClientRect();
+        const vertical = figureRect.width &lt;= 800;
+        svg.setAttribute(&#x27;viewBox&#x27;, `0 0 ${Math.max(1, figureRect.width)} ${Math.max(1, figureRect.height)}`);
+
+        view.edges.forEach(([from, to]) =&gt; {
+          const fromEl = nodesHost.querySelector(`[data-node=&quot;${from}&quot;]`);
+          const toEl = nodesHost.querySelector(`[data-node=&quot;${to}&quot;]`);
+          if (!fromEl || !toEl) return;
+          const path = document.createElementNS(ns, &#x27;path&#x27;);
+          const isActive = Boolean(selected &amp;&amp; (selected === from || selected === to));
+          path.setAttribute(&#x27;d&#x27;, connectorPath(fromEl.getBoundingClientRect(), toEl.getBoundingClientRect(), figureRect, vertical));
+          path.setAttribute(&#x27;class&#x27;, `arch-edge${isActive ? &#x27; is-active&#x27; : &#x27;&#x27;}${selected &amp;&amp; !isActive ? &#x27; is-muted&#x27; : &#x27;&#x27;}`);
+          path.setAttribute(&#x27;marker-end&#x27;, isActive ? &#x27;url(#arch-arrow-active)&#x27; : &#x27;url(#arch-arrow)&#x27;);
+          svg.appendChild(path);
+        });
+      }
+
+      root.querySelectorAll(&#x27;[data-view]&#x27;).forEach((button) =&gt; {
+        button.addEventListener(&#x27;click&#x27;, () =&gt; {
+          activeView = button.dataset.view;
+          root.querySelectorAll(&#x27;[data-view]&#x27;).forEach((peer) =&gt; {
+            const active = peer === button;
+            peer.setAttribute(&#x27;aria-pressed&#x27;, String(active));
+            peer.classList.toggle(&#x27;btn-primary&#x27;, active);
+          });
+          render();
+        });
+      });
+
+      const resizeObserver = new ResizeObserver(() =&gt; requestAnimationFrame(drawEdges));
+      resizeObserver.observe(figure);
+      render();
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerdown&quot;, handlePointer);
+    document.removeEventListener(&quot;pointercancel&quot;, handlePointer);
+    document.removeEventListener(&quot;click&quot;, handleTouchClick);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerdown&quot;, handlePointer);
+  document.addEventListener(&quot;pointercancel&quot;, handlePointer);
+  document.addEventListener(&quot;click&quot;, handleTouchClick);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
